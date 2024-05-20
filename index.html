@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <button class="add-task-button" onclick="window.location.href='add-task.html'">Add Task</button>
+    <div class="container">
+        <div class="logo"><img src="images/logo.png" alt="App Logo"></div>
+        <h1>My Tasks</h1>
+        <div class="task-list">
+            <ul id="taskList">
+                <!-- Tasks will be injected here by JavaScript -->
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Sample tasks array
+        const tasks = [
+            { title: 'Task 1', detail: 'Detailed description of Task 1.' },
+            { title: 'Task 2', detail: 'Detailed description of Task 2.' },
+            { title: 'Task 3', detail: 'Detailed description of Task 3.' }
+        ];
+
+        // Function to render tasks
+        function renderTasks() {
+            const taskList = document.getElementById('taskList');
+            taskList.innerHTML = ''; // Clear existing tasks
+            tasks.forEach((task, index) => {
+                const taskItem = document.createElement('li');
+                taskItem.textContent = task.title;
+                taskItem.onclick = () => showTaskDetail(index);
+                taskList.appendChild(taskItem);
+            });
+        }
+
+        // Function to show task detail
+        function showTaskDetail(index) {
+            const task = tasks[index];
+            alert(`Title: ${task.title}\nDetail: ${task.detail}`);
+            // You can also redirect to a task detail page
+        }
+
+        // Render tasks on page load
+        document.addEventListener('DOMContentLoaded', renderTasks);
+    </script>
+</body>
+</html>
